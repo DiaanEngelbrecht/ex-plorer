@@ -1,0 +1,6 @@
+<div>
+    <p><%= @process_tree |> Jason.encode!() %></p>
+  <%= for value <- @applications do %>
+    <p><%= inspect(value) %></p>
+  <% end %>
+</div>
