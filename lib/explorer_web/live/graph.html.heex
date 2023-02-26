@@ -1,6 +1,17 @@
 <div>
-    <p><%= @process_tree |> Jason.encode!() %></p>
-  <%= for value <- @applications do %>
-    <p><%= inspect(value) %></p>
-  <% end %>
+  <h1>
+    <%= @application |> Atom.to_string() %>
+  </h1>
+  <.form for={%{}} phx-change="change_app">
+    <select style="color: #FFF;" name="application">
+      <%= for app <- @applications do %>
+        <option value={ app |> elem(0) |> to_string }><%= inspect app %></option>
+      <% end %>
+    </select>
+  </.form>
+  <div 
+    id="graph"  
+    phx-hook="graph" 
+    data-process-tree={@process_tree |> Jason.encode!()}>
+  </div>
 </div>
